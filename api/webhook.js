@@ -1,93 +1,59 @@
-// src/handlers/webhookHandler.js
+// api/webhook.js - Endpoint principal con dotenv
+// Cargar variables de entorno PRIMERO
+require('dotenv').config();
+
+const WebhookHandler = require('../src/handlers/webhookHandler');
 const Logger = require('../src/utils/logger');
 const Validators = require('../src/utils/validators');
-const MessageHandler = require('./messageHandler');
 const { HTTP_STATUS } = require('../src/config/constants');
-const { ERROR_MESSAGES, SUCCESS_MESSAGES } = require('../src/config/messages');
 
-class WebhookHandler {
-  constructor() {
-    this.messageHandler = new MessageHandler();
-  }
-
-  async handleGet(req, res) {
-    const { query } = req;
-    const verifyToken = process.env.VERIFY_TOKEN;
-    
-    Logger.webhook('Solicitud de verificación recibida');
-    
-    const validation = Validators.validateWebhookVerification(query, verifyToken);
-    
-    Logger.webhook('Estado de verificación:', {
-      mode: validation.mode,
-      hasToken: validation.hasToken,
-      hasChallenge: validation.hasChallenge,
-      tokenConfigured: validation.tokenConfigured
-    });
-    
-    if (validation.isValid) {
-      Logger.success(SUCCESS_MESSAGES.WEBHOOK_VERIFIED);
-      return res.status(HTTP_STATUS.OK).send(query['hub.challenge']);
-    } else {
-      Logger.error(ERROR_MESSAGES.INVALID_TOKEN);
-      return res.status(HTTP_STATUS.FORBIDDEN).json({ 
-        error: ERROR_MESSAGES.INVALID_TOKEN 
-      });
-    }
-  }
-
-  async handlePost(req, res) {
-    const { body } = req;
-    
-    Logger.webhook('POST recibido');
-    
-    try {
-      if (!Validators.isValidWhatsAppWebhook(body)) {
-        Logger.warning('Objeto no reconocido:', body?.object);
-        return res.status(HTTP_STATUS.OK).json({ 
-          message: 'Objeto no es whatsapp_business_account, pero OK'
-        });
-      }
-
-      Logger.success('Objeto WhatsApp Business Account confirmado');
-      
-      await this._processWebhookEntries(body.entry);
-      
-      return res.status(HTTP_STATUS.OK).json({ 
-        success: true, 
-        message: SUCCESS_MESSAGES.WEBHOOK_PROCESSED,
-        timestamp: new Date().toISOString()
-      });
-      
-    } catch (error) {
-      Logger.error(ERROR_MESSAGES.WEBHOOK_ERROR, error.message);
-      return res.status(HTTP_STATUS.INTERNAL_ERROR).json({ 
-        error: 'Error interno del servidor',
-        message: error.message 
-      });
-    }
-  }
-
-  async _processWebhookEntries(entries) {
-    if (!entries || entries.length === 0) {
-      return;
-    }
-
-    for (const entry of entries) {
-      Logger.webhook(`Procesando entry: ${entry.id}`);
-      
-      if (entry.changes && entry.changes.length > 0) {
-        for (const change of entry.changes) {
-          const { field, value } = change;
-          Logger.webhook(`Cambio - Campo: ${field}`);
-          
-          if (Validators.hasMessages(value)) {
-            await this.messageHandler.processMessages(value.messages, value);
-          }
-        }
-      }
-    }
-  }
+// Validar variables de entorno al iniciar
+const envValidation = Validators.validateEnvironmentVars();
+if (envValidation.isValid) {
+  Logger.success(`Variables de entorno configuradas: ${envValidation.configured.length}/${envValidation.configured.length + envValidation.missing.length}`);
+  Logger.info('Variables configuradas:', envValidation.configured);
+} else {
+  Logger.error('Variables de entorno faltantes:', envValidation.missing);
+  Logger.warning('El bot funcionará parcialmente pero no podrá enviar mensajes');
 }
 
-module.exports = WebhookHandler;
+// Mostrar información del entorno
+const envInfo = Validators.getEnvironmentInfo();
+Logger.info('Información del entorno:', {
+  nodeEnv: envInfo.nodeEnv,
+  nodeVersion: envInfo.nodeVersion,
+  platform: envInfo.platform,
+  hasTokens: envInfo.hasVerifyToken && envInfo.hasWhatsAppToken
+});
+
+const webhookHandler = new WebhookHandler();
+
+module.exports = async (req, res) => {
+  const { method } = req;
+  
+  Logger.info(`${method} request recibido en /webhook`);
+  
+  try {
+    switch (method) {
+      case 'GET':
+        return await webhookHandler.handleGet(req, res);
+        
+      case 'POST':
+        return await webhookHandler.handlePost(req, res);
+        
+      default:
+        Logger.warning(`Método no permitido: ${method}`);
+        return res.status(HTTP_STATUS.METHOD_NOT_ALLOWED).json({ 
+          error: 'Método no permitido',
+          allowed: ['GET', 'POST'],
+          received: method 
+        });
+    }
+  } catch (error) {
+    Logger.error('Error no manejado en webhook:', error);
+    return res.status(HTTP_STATUS.INTERNAL_ERROR).json({
+      error: 'Error interno del servidor',
+      message: error.message
+    });
+  }
+};
