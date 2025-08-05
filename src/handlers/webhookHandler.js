@@ -1,9 +1,9 @@
 // src/handlers/webhookHandler.js
-const Logger = require('../src/utils/logger');
-const Validators = require('../src/utils/validators');
+const Logger = require('../utils/logger');
+const Validators = require('../utils/validators');
 const MessageHandler = require('./messageHandler');
-const { HTTP_STATUS } = require('../src/config/constants');
-const { ERROR_MESSAGES, SUCCESS_MESSAGES } = require('../src/config/messages');
+const { HTTP_STATUS } = require('../config/constants');
+const { ERROR_MESSAGES, SUCCESS_MESSAGES } = require('../config/messages');
 
 class WebhookHandler {
   constructor() {

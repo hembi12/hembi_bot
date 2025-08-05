@@ -1,18 +1,36 @@
 {
   "name": "hembi_bot",
   "version": "1.0.0",
-  "description": "WhatsApp Business API Bot para Hembi",
+  "description": "WhatsApp Business API Bot para Hembi - Modularizado",
   "main": "api/webhook.js",
   "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "vercel --prod",
-    "start": "node api/webhook.js"
+    "start": "node api/webhook.js",
+    "dev": "nodemon api/webhook.js",
+    "lint": "eslint src/ api/",
+    "format": "prettier --write src/ api/"
   },
-  "keywords": ["whatsapp", "webhook", "api", "hembi"],
+  "keywords": [
+    "whatsapp",
+    "webhook",
+    "api",
+    "hembi",
+    "bot",
+    "modular"
+  ],
   "author": "Tu Nombre",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.32.0",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2"
+  },
+  "directories": {
+    "src": "src"
   }
 }
