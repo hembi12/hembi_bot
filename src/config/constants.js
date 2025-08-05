@@ -1,4 +1,4 @@
-// src/config/constants.js
+// src/config/constants.js - Purificadora San Juan
 const WHATSAPP_API = {
   BASE_URL: 'https://graph.facebook.com/v18.0',
   MESSAGING_PRODUCT: 'whatsapp'
@@ -21,20 +21,24 @@ const MESSAGE_TYPES = {
 };
 
 const INTENT_KEYWORDS = {
-  GREETING: ['hola', 'buenos', 'buenas', 'hi', 'hello'],
-  HELP: ['ayuda', 'help', 'menu'],
-  THANKS: ['gracias', 'thank', 'thanks'],
-  PRICES: ['precio', 'costo', 'cuanto', 'tarifa'],
-  SCHEDULE: ['horario', 'hora', 'cuando', 'schedule']
+  GREETING: ['hola', 'buenos', 'buenas', 'hi', 'hello', 'ola'],
+  ORDER: ['pedido', 'pedir', 'comprar', 'ordenar', 'solicitar'],
+  TRACKING: ['rastrear', 'rastreo', 'seguimiento', 'track', 'donde esta', 'estatus'],
+  PRICES: ['precio', 'costo', 'cuanto', 'tarifa', 'precios'],
+  INFO: ['informacion', 'info', 'servicios', 'que hacen', 'general'],
+  HUMAN: ['persona', 'humano', 'operador', 'agente', 'hablar con alguien']
 };
 
 const BOT_CONFIG = {
-  NAME: 'Hembi',
+  NAME: 'H2O',
+  COMPANY: 'Purificadora San Juan',
+  BUSINESS_TYPE: 'Purificadora de Agua',
+  LOCATION: 'México',
   TIMEZONE: 'México (GMT-6)',
   BUSINESS_HOURS: {
-    WEEKDAYS: '9:00 AM - 6:00 PM',
-    SATURDAY: '9:00 AM - 2:00 PM',
-    SUNDAY: 'Cerrado'
+    WEEKDAYS: '8:00 AM - 7:00 PM',
+    SATURDAY: '8:00 AM - 4:00 PM',
+    SUNDAY: '9:00 AM - 2:00 PM'
   }
 };
 

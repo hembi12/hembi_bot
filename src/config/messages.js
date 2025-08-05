@@ -1,32 +1,49 @@
-// src/config/messages.js
+// src/config/messages.js - Purificadora San Juan
 const { BOT_CONFIG } = require('./constants');
 
 const PREDEFINED_MESSAGES = {
-  saludo: `¡Hola! 👋 Gracias por contactar a *${BOT_CONFIG.NAME}*. ¿En qué puedo ayudarte hoy?\n\nPuedes escribir *"ayuda"* para ver nuestros servicios.`,
+  saludo: `¡Hola! 👋 Soy *${BOT_CONFIG.NAME}* el asistente de *${BOT_CONFIG.COMPANY}*. ¿En qué te puedo ayudar?\n\n` +
+          `🚚 *Hacer un pedido*\n` +
+          `📍 *Rastrear mi pedido*\n` +
+          `💰 *Consultar precios*\n` +
+          `❓ *Información general*\n` +
+          `👨‍💼 *Hablar con una persona*\n\n` +
+          `Solo escribe lo que necesitas o elige una opción.`,
   
-  ayuda: `🤖 *Menú de ${BOT_CONFIG.NAME} Bot*\n\n` +
+  // Mantenemos los otros mensajes por ahora (los actualizaremos después)
+  ayuda: `🤖 *Menú de ${BOT_CONFIG.NAME}*\n\n` +
          `Puedo ayudarte con:\n` +
-         `• *Precios* - Consultar tarifas\n` +
-         `• *Horarios* - Ver horarios de atención\n` +
-         `• *Servicios* - Información de servicios\n\n` +
+         `🚚 *Pedido* - Hacer un pedido nuevo\n` +
+         `📍 *Rastrear* - Seguimiento de tu pedido\n` +
+         `💰 *Precios* - Consultar nuestras tarifas\n` +
+         `❓ *Información* - Datos generales\n` +
+         `👨‍💼 *Persona* - Contactar a un agente\n\n` +
          `Solo escribe la palabra clave que te interese.`,
   
   precios: '💰 *Nuestros Precios*\n\n' +
-           'Para obtener información detallada sobre precios, por favor contáctanos directamente.\n\n' +
-           '📞 Tel: [Tu teléfono]\n' +
-           '📧 Email: [Tu email]',
+           'Agua purificada de la mejor calidad:\n\n' +
+           '🚰 Garrafón 20L: $25 MXN\n' +
+           '🚰 Botella 1L: $8 MXN\n' +
+           '🚰 Botella 500ml: $5 MXN\n\n' +
+           '🚚 Envío gratuito en pedidos superiores a $100\n\n' +
+           '¿Te gustaría hacer un pedido?',
   
   horarios: '🕐 *Horarios de Atención*\n\n' +
             `📅 Lunes a Viernes: ${BOT_CONFIG.BUSINESS_HOURS.WEEKDAYS}\n` +
             `📅 Sábados: ${BOT_CONFIG.BUSINESS_HOURS.SATURDAY}\n` +
             `📅 Domingos: ${BOT_CONFIG.BUSINESS_HOURS.SUNDAY}\n\n` +
-            `Zona horaria: ${BOT_CONFIG.TIMEZONE}`,
+            `Zona horaria: ${BOT_CONFIG.TIMEZONE}\n\n` +
+            '💧 ¡Agua pura siempre disponible!',
   
-  despedida: '¡De nada! 😊 ¿Hay algo más en lo que pueda ayudarte?\n\nSi necesitas hablar con un humano, estaremos disponibles en nuestros horarios de atención.',
+  despedida: '¡Gracias por contactar a *Purificadora San Juan*! 💧\n\n' +
+             '¿Hay algo más en lo que pueda ayudarte?\n\n' +
+             'Si necesitas hacer un pedido o hablar con nuestro equipo, ' +
+             'estaremos disponibles en nuestros horarios de atención.',
   
   default: 'Gracias por tu mensaje. 📝\n\n' +
-           'Te he transferido a nuestro equipo humano que te responderá pronto.\n\n' +
-           'Mientras tanto, puedes escribir *"ayuda"* para ver nuestros servicios automáticos.'
+           'Te he conectado con nuestro equipo de *Purificadora San Juan* ' +
+           'que te responderá pronto.\n\n' +
+           'Mientras tanto, puedes escribir *"hola"* para ver todas nuestras opciones.'
 };
 
 const ERROR_MESSAGES = {
