@@ -32,17 +32,8 @@ class MessageHandler {
     }
 
     try {
-      // Detectar intención del usuario
-      const intent = this.botService.detectIntent(text.body);
-      
-      let responseMessage;
-      
-      // Manejar pedidos específicos
-      if (intent === 'pedido_especifico') {
-        responseMessage = this.botService.processSpecificOrder(text.body);
-      } else {
-        responseMessage = this.botService.getResponseMessage(intent);
-      }
+      // Procesar mensaje considerando estado de conversación
+      const responseMessage = this.botService.processMessage(text.body, from);
       
       // Enviar respuesta
       await this.whatsappService.sendTextMessage(from, responseMessage, phoneNumberId);
