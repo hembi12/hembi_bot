@@ -38,10 +38,11 @@ class MessageHandler {
       // Enviar respuesta
       await this.whatsappService.sendTextMessage(from, responseMessage, phoneNumberId);
       
-      Logger.success(`Respuesta enviada - Tipo: ${intent}`);
+      Logger.success(`Respuesta enviada para usuario: ${from}`);
       
     } catch (error) {
       Logger.error('Error procesando mensaje', error.message);
+      Logger.error('Stack trace:', error.stack);
       
       // En caso de error, intentar enviar mensaje de error al usuario
       try {
