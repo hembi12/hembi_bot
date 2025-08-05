@@ -11,14 +11,13 @@ const PREDEFINED_MESSAGES = {
           `Solo escribe lo que necesitas o elige una opción.`,
 
   pedido: '🚚 *¡Perfecto! Vamos a hacer tu pedido*\n\n' +
-          '💧 *Nuestros productos disponibles:*\n\n' +
-          '1️⃣ *Garrafón 20L* - $25 MXN\n' +
-          '2️⃣ *Botella 1L* - $8 MXN\n' +
-          '3️⃣ *Botella 500ml* - $5 MXN\n\n' +
-          '🎯 *¿Qué te gustaría pedir?*\n' +
-          'Ejemplo: "2 garrafones y 5 botellas de 1L"\n\n' +
-          '🚚 *Envío gratuito* en pedidos de $100 o más\n' +
-          '⏰ *Entrega* el mismo día en CDMX',
+          '💧 *Nuestro servicio:*\n\n' +
+          '🥤 *Llenado de Garrafón* - $15 MXN\n' +
+          '   (Traes tu garrafón, lo llenamos con agua purificada)\n\n' +
+          '🎯 *¿Cuántos garrafones quieres llenar?*\n' +
+          'Ejemplo: "3 garrafones" o "quiero llenar 5"\n\n' +
+          '🚚 *Servicio a domicilio disponible*\n' +
+          '⏰ *Atención* todos los días',
 
   rastreo: '📍 *Rastrear tu pedido*\n\n' +
            '🔍 Para rastrear tu pedido, necesito el número de orden.\n\n' +
@@ -26,17 +25,19 @@ const PREDEFINED_MESSAGES = {
            '💬 *Ejemplo:* PSJ12345678901\n\n' +
            '¿Cuál es tu número de orden?',
 
-  precios: '💰 *Lista de Precios - Purificadora San Juan*\n\n' +
-           '💧 *Agua purificada premium:*\n\n' +
-           '🥤 *Garrafón 20L* - $25 MXN\n' +
-           '🥤 *Botella 1L* - $8 MXN\n' +
-           '🥤 *Botella 500ml* - $5 MXN\n\n' +
-           '🚚 *Envío:*\n' +
-           '• GRATIS en pedidos de $100 o más\n' +
-           '• $20 MXN en pedidos menores\n\n' +
-           '⏰ *Entrega:* Mismo día en CDMX\n' +
-           '📱 *Pedidos:* WhatsApp 24/7\n\n' +
-           '¿Te gustaría hacer un pedido?',
+  precios: '💰 *Precios - Purificadora San Juan*\n\n' +
+           '💧 *Servicio de llenado:*\n\n' +
+           '🥤 *Llenado de Garrafón* - $15 MXN\n' +
+           '   • Traes tu garrafón\n' +
+           '   • Lo llenamos con agua 100% purificada\n' +
+           '   • Proceso de ozonización incluido\n\n' +
+           '🚚 *Servicio a domicilio:*\n' +
+           '   • Recogemos tus garrafones\n' +
+           '   • Los llenamos en planta\n' +
+           '   • Te los entregamos llenos\n' +
+           '   • Costo adicional según zona\n\n' +
+           '⏰ *Horario:* Todos los días\n\n' +
+           '¿Cuántos garrafones necesitas llenar?',
 
   informacion: '❓ *Información General - Purificadora San Juan*\n\n' +
                '💧 *Sobre nosotros:*\n' +

@@ -114,14 +114,10 @@ class BotService {
       response += `• ${item.quantity} ${item.product} - $${item.subtotal} MXN\n`;
     });
     
-    response += `\n💰 *Total: $${total} MXN*\n`;
+    response += `\n💰 *Total: ${total} MXN*\n`;
     
-    if (freeShipping) {
-      response += '🎉 *¡Envío GRATUITO incluido!*\n\n';
-    } else {
-      response += `🚚 Envío: $20 MXN (Gratis en pedidos +$100)\n`;
-      response += `💰 *Total con envío: $${total + 20} MXN*\n\n`;
-    }
+    // Para garrafones a $15, no hay envío gratuito, solo servicio a domicilio
+    response += '🚚 *Servicio a domicilio disponible* (costo según zona)\n\n';
     
     response += '✅ *Para continuar, necesito tu dirección de entrega:*\n\n';
     response += '📍 Por favor envía tu dirección completa:\n';
@@ -302,10 +298,12 @@ class BotService {
 
   _seemsLikeOrder(text) {
     const orderPatterns = [
-      /\d+\s*(garraf|botell|litro)/,
-      /quiero\s*\d+/,
+      /\d+\s*(garraf)/,
+      /quiero\s*llenar\s*\d+/,
       /necesito\s*\d+/,
-      /(dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez)\s*(garraf|botell)/
+      /llenar\s*\d+/,
+      /(uno|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez)\s*(garraf)/,
+      /\d+\s*garraf/
     ];
     
     return orderPatterns.some(pattern => pattern.test(text));
@@ -313,30 +311,63 @@ class BotService {
 
   _extractOrderItems(text) {
     const items = [];
-    const products = {
-      'garrafon': { name: 'Garrafón 20L', price: 25 },
-      'garrafa': { name: 'Garrafón 20L', price: 25 },
-      'botella 1l': { name: 'Botella 1L', price: 8 },
-      'botella de 1l': { name: 'Botella 1L', price: 8 },
-      'botella 500ml': { name: 'Botella 500ml', price: 5 },
-      'botella de 500ml': { name: 'Botella 500ml', price: 5 }
-    };
     
-    for (const [key, product] of Object.entries(products)) {
-      const regex = new RegExp(`(\\d+)\\s*${key}`, 'gi');
-      const matches = text.match(regex);
-      
-      if (matches) {
-        matches.forEach(match => {
-          const quantity = parseInt(match.match(/\d+/)[0]);
-          items.push({
-            product: product.name,
-            quantity: quantity,
-            price: product.price,
-            subtotal: quantity * product.price
-          });
-        });
+    // Buscar patrones de cantidad + garrafones
+    const patterns = [
+      /(\d+)\s*(garraf)/gi,
+      /quiero\s*llenar\s*(\d+)/gi,
+      /necesito\s*(\d+)/gi,
+      /llenar\s*(\d+)/gi
+    ];
+    
+    let totalGarrafones = 0;
+    
+    for (const pattern of patterns) {
+      const matches = [...text.matchAll(pattern)];
+      for (const match of matches) {
+        const quantity = parseInt(match[1]);
+        if (quantity && quantity > 0) {
+          totalGarrafones += quantity;
+        }
       }
+    }
+    
+    // Si no encontró números, buscar palabras
+    if (totalGarrafones === 0) {
+      const wordNumbers = {
+        'uno': 1, 'un': 1,
+        'dos': 2,
+        'tres': 3,
+        'cuatro': 4,
+        'cinco': 5,
+        'seis': 6,
+        'siete': 7,
+        'ocho': 8,
+        'nueve': 9,
+        'diez': 10
+      };
+      
+      for (const [word, number] of Object.entries(wordNumbers)) {
+        if (text.includes(word)) {
+          totalGarrafones += number;
+          break; // Solo tomar el primero que encuentre
+        }
+      }
+    }
+    
+    // Si aún no hay cantidad, asumir 1
+    if (totalGarrafones === 0) {
+      totalGarrafones = 1;
+    }
+    
+    // Crear item del pedido
+    if (totalGarrafones > 0) {
+      items.push({
+        product: 'Llenado de Garrafón',
+        quantity: totalGarrafones,
+        price: 15,
+        subtotal: totalGarrafones * 15
+      });
     }
     
     return items;

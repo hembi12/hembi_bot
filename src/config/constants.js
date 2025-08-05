@@ -24,7 +24,7 @@ const INTENT_KEYWORDS = {
   GREETING: ['hola', 'buenos', 'buenas', 'hi', 'hello', 'ola', 'saludos'],
   ORDER: [
     'pedido', 'pedir', 'comprar', 'ordenar', 'solicitar', 'quiero', 'necesito',
-    '1', 'garrafon', 'garrafa', 'botella', 'agua', 'hacer pedido'
+    '1', 'garrafon', 'garrafa', 'llenar', 'llenado', 'agua', 'hacer pedido'
   ],
   TRACKING: [
     'rastrear', 'rastreo', 'seguimiento', 'track', 'donde esta', 'estatus',
