@@ -9,6 +9,16 @@ const PREDEFINED_MESSAGES = {
           `❓ *Información general*\n` +
           `👨‍💼 *Hablar con una persona*\n\n` +
           `Solo escribe lo que necesitas o elige una opción.`,
+
+  pedido: '🚚 *¡Perfecto! Vamos a hacer tu pedido*\n\n' +
+          '💧 *Nuestros productos disponibles:*\n\n' +
+          '1️⃣ *Garrafón 20L* - $25 MXN\n' +
+          '2️⃣ *Botella 1L* - $8 MXN\n' +
+          '3️⃣ *Botella 500ml* - $5 MXN\n\n' +
+          '🎯 *¿Qué te gustaría pedir?*\n' +
+          'Ejemplo: "2 garrafones y 5 botellas de 1L"\n\n' +
+          '🚚 *Envío gratuito* en pedidos de $100 o más\n' +
+          '⏰ *Entrega* el mismo día en CDMX',
   
   // Mantenemos los otros mensajes por ahora (los actualizaremos después)
   ayuda: `🤖 *Menú de ${BOT_CONFIG.NAME}*\n\n` +
