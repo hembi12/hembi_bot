@@ -22,11 +22,11 @@ const MESSAGE_TYPES = {
 
 const INTENT_KEYWORDS = {
   GREETING: ['hola', 'buenos', 'buenas', 'hi', 'hello', 'ola'],
-  ORDER: ['pedido', 'pedir', 'comprar', 'ordenar', 'solicitar'],
-  TRACKING: ['rastrear', 'rastreo', 'seguimiento', 'track', 'donde esta', 'estatus'],
-  PRICES: ['precio', 'costo', 'cuanto', 'tarifa', 'precios'],
-  INFO: ['informacion', 'info', 'servicios', 'que hacen', 'general'],
-  HUMAN: ['persona', 'humano', 'operador', 'agente', 'hablar con alguien']
+  ORDER: ['pedido', 'pedir', 'comprar', 'ordenar', 'solicitar', 'quiero', '1', 'garrafon', 'garrafa', 'botella'],
+  TRACKING: ['rastrear', 'rastreo', 'seguimiento', 'track', 'donde esta', 'estatus', '2'],
+  PRICES: ['precio', 'costo', 'cuanto', 'tarifa', 'precios', '3'],
+  INFO: ['informacion', 'info', 'servicios', 'que hacen', 'general', '4'],
+  HUMAN: ['persona', 'humano', 'operador', 'agente', 'hablar con alguien', '5']
 };
 
 const BOT_CONFIG = {
