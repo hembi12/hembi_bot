@@ -21,12 +21,27 @@ const MESSAGE_TYPES = {
 };
 
 const INTENT_KEYWORDS = {
-  GREETING: ['hola', 'buenos', 'buenas', 'hi', 'hello', 'ola'],
-  ORDER: ['pedido', 'pedir', 'comprar', 'ordenar', 'solicitar', 'quiero', '1', 'garrafon', 'garrafa', 'botella'],
-  TRACKING: ['rastrear', 'rastreo', 'seguimiento', 'track', 'donde esta', 'estatus', '2'],
-  PRICES: ['precio', 'costo', 'cuanto', 'tarifa', 'precios', '3'],
-  INFO: ['informacion', 'info', 'servicios', 'que hacen', 'general', '4'],
-  HUMAN: ['persona', 'humano', 'operador', 'agente', 'hablar con alguien', '5']
+  GREETING: ['hola', 'buenos', 'buenas', 'hi', 'hello', 'ola', 'saludos'],
+  ORDER: [
+    'pedido', 'pedir', 'comprar', 'ordenar', 'solicitar', 'quiero', 'necesito',
+    '1', 'garrafon', 'garrafa', 'botella', 'agua', 'hacer pedido'
+  ],
+  TRACKING: [
+    'rastrear', 'rastreo', 'seguimiento', 'track', 'donde esta', 'estatus',
+    '2', 'buscar', 'ubicar', 'seguir', 'psj', 'numero de orden'
+  ],
+  PRICES: [
+    'precio', 'costo', 'cuanto', 'tarifa', 'precios', 'costos', 'lista',
+    '3', 'vale', 'cobran', 'cobras'
+  ],
+  INFO: [
+    'informacion', 'info', 'servicios', 'que hacen', 'general', 'empresa',
+    '4', 'acerca', 'sobre', 'horarios', 'cobertura', 'zona'
+  ],
+  HUMAN: [
+    'persona', 'humano', 'operador', 'agente', 'hablar con alguien',
+    '5', 'representante', 'ejecutivo', 'atencion', 'soporte'
+  ]
 };
 
 const BOT_CONFIG = {

@@ -19,8 +19,52 @@ const PREDEFINED_MESSAGES = {
           'Ejemplo: "2 garrafones y 5 botellas de 1L"\n\n' +
           '🚚 *Envío gratuito* en pedidos de $100 o más\n' +
           '⏰ *Entrega* el mismo día en CDMX',
+
+  rastreo: '📍 *Rastrear tu pedido*\n\n' +
+           '🔍 Para rastrear tu pedido, necesito el número de orden.\n\n' +
+           '📝 *Formato:* PSJ + números\n' +
+           '💬 *Ejemplo:* PSJ12345678901\n\n' +
+           '¿Cuál es tu número de orden?',
+
+  precios: '💰 *Lista de Precios - Purificadora San Juan*\n\n' +
+           '💧 *Agua purificada premium:*\n\n' +
+           '🥤 *Garrafón 20L* - $25 MXN\n' +
+           '🥤 *Botella 1L* - $8 MXN\n' +
+           '🥤 *Botella 500ml* - $5 MXN\n\n' +
+           '🚚 *Envío:*\n' +
+           '• GRATIS en pedidos de $100 o más\n' +
+           '• $20 MXN en pedidos menores\n\n' +
+           '⏰ *Entrega:* Mismo día en CDMX\n' +
+           '📱 *Pedidos:* WhatsApp 24/7\n\n' +
+           '¿Te gustaría hacer un pedido?',
+
+  informacion: '❓ *Información General - Purificadora San Juan*\n\n' +
+               '💧 *Sobre nosotros:*\n' +
+               '• Agua 100% purificada y ozonizada\n' +
+               '• Más de 15 años de experiencia\n' +
+               '• Certificaciones de calidad\n' +
+               '• Servicio a domicilio\n\n' +
+               '🏪 *Cobertura:*\n' +
+               '• Ciudad de México\n' +
+               '• Estado de México\n' +
+               '• Entrega el mismo día\n\n' +
+               '🕐 *Horarios de entrega:*\n' +
+               `• Lunes a Viernes: ${BOT_CONFIG.BUSINESS_HOURS.WEEKDAYS}\n` +
+               `• Sábados: ${BOT_CONFIG.BUSINESS_HOURS.SATURDAY}\n` +
+               `• Domingos: ${BOT_CONFIG.BUSINESS_HOURS.SUNDAY}\n\n` +
+               '¿Necesitas algo más específico?',
+
+  humano: '👨‍💼 *Contacto con Agente Humano*\n\n' +
+          '🔄 Te estoy conectando con uno de nuestros agentes...\n\n' +
+          '⏰ *Horarios de atención:*\n' +
+          `• Lunes a Viernes: ${BOT_CONFIG.BUSINESS_HOURS.WEEKDAYS}\n` +
+          `• Sábados: ${BOT_CONFIG.BUSINESS_HOURS.SATURDAY}\n` +
+          `• Domingos: ${BOT_CONFIG.BUSINESS_HOURS.SUNDAY}\n\n` +
+          '📱 *También puedes contactarnos:*\n' +
+          '• WhatsApp: Este mismo número\n' +
+          '• Teléfono: 55 1234 5678\n\n' +
+          '💬 En breve un agente te responderá...',
   
-  // Mantenemos los otros mensajes por ahora (los actualizaremos después)
   ayuda: `🤖 *Menú de ${BOT_CONFIG.NAME}*\n\n` +
          `Puedo ayudarte con:\n` +
          `🚚 *Pedido* - Hacer un pedido nuevo\n` +
@@ -29,14 +73,6 @@ const PREDEFINED_MESSAGES = {
          `❓ *Información* - Datos generales\n` +
          `👨‍💼 *Persona* - Contactar a un agente\n\n` +
          `Solo escribe la palabra clave que te interese.`,
-  
-  precios: '💰 *Nuestros Precios*\n\n' +
-           'Agua purificada de la mejor calidad:\n\n' +
-           '🚰 Garrafón 20L: $25 MXN\n' +
-           '🚰 Botella 1L: $8 MXN\n' +
-           '🚰 Botella 500ml: $5 MXN\n\n' +
-           '🚚 Envío gratuito en pedidos superiores a $100\n\n' +
-           '¿Te gustaría hacer un pedido?',
   
   horarios: '🕐 *Horarios de Atención*\n\n' +
             `📅 Lunes a Viernes: ${BOT_CONFIG.BUSINESS_HOURS.WEEKDAYS}\n` +
